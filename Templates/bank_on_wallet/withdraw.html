@@ -1,0 +1,19 @@
+{% extends 'bank_on_wallet/layout.html' %}
+
+{% block content %}
+<h1>{{account.name}}, enjoy your spoils...</h1>
+
+<form method="post" action="{% url 'withdrawn' %}">
+    {% csrf_token %}
+    <p>Current Balance: ${{account.balance}}</p>
+    <p>How much $$$ would you like?</p>
+    Withdraw Amount: <input name="money" placeholder="dollars">
+    <input type="submit" value="Withdraw Money">
+</form>
+
+
+
+{% for stock in account.position_set.all%}
+    <ul>{{stock.quantity}} shares of {{stock.symbol}}</ul>
+    {% endfor %}
+{% endblock %}

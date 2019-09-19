@@ -1,0 +1,18 @@
+{% extends 'bank_on_wallet/layout.html' %}
+
+{% block content %}
+<h1>{{account.name}}, which piece of the pie are you buying today?</h1>
+
+<form method="post" action="{% url 'bought' %}">
+    {% csrf_token %}
+    Symbol: <input name="symbol"><br>
+    Quantity: <input name="qty"><br>
+    <input type="submit" value="Buy stock!">
+</form>
+
+
+
+{% for stock in account.position_set.all%}
+    <ul>{{stock.quantity}} shares of {{stock.symbol}}</ul>
+    {% endfor %}
+{% endblock %}

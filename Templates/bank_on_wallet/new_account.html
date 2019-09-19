@@ -1,0 +1,24 @@
+<body background="http://images.all-free-download.com/images/graphiclarge/colorful_shapes_abstract_background_579609.jpg"/>
+<style>
+.main {
+    background-color: white;
+    margin-left: auto;
+    margin-right: auto;
+    width: 35em;
+    border-radius: 30px;
+    text-align: center;
+}
+</style>
+<fieldset class="main">
+<h1>Bank On</h1>
+<h3>Create a New Account!</h3>
+
+<form method="post" action="/bank_on_wallet/create_account/">
+    {% csrf_token %}
+    <input name="name" placeholder="Your name"><br>
+    <input name="username" placeholder="Username"><br>
+    <input type="password" name="password" placeholder="Password"><br>
+    <input type="submit" value="Create Account">
+</form>
+</fieldset>
+</body>

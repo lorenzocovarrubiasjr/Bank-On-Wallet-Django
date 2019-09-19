@@ -1,0 +1,32 @@
+
+
+<body background="http://images.all-free-download.com/images/graphiclarge/colorful_shapes_abstract_background_579609.jpg"/>
+<style>
+.main {
+    background-color: white;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10%;
+    width: 35em;
+    border-radius: 30px;
+    text-align: center;
+}
+</style>
+<fieldset class="main">
+<h4>Welcome To</h4>
+<h1>Bank On</h1>
+<h4>Your AI Financial Broker</h4>
+<form method="POST" action='validate'>
+{% csrf_token %}
+<input name="username" placeholder="Username"><br>
+<input type="password" name="password" placeholder="Password"><br>
+<input type="submit" value="Log In">
+
+<a href="new_account" ><p class="in_form"> Create New Account </p></a>
+</form>
+
+ 
+</fieldset>
+</body>
+
+

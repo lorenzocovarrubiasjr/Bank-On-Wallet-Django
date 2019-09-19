@@ -1,0 +1,18 @@
+{% extends 'bank_on_wallet/layout.html' %}
+
+{% block content%}
+<fieldset class="main">
+<h1>Bank On</h1>
+<h4>Log In</h4>
+<form method="POST">
+{% csrf_token %}
+<!--<input name="username" placeholder="Username"><br>
+<input type="password" name="password" placeholder="Password"><br> -->
+{{ form.as_p }}
+<input type="submit" value="Log In">
+</form>
+
+<p>Create a New Account</p>
+ 
+</fieldset>
+{% endblock %}

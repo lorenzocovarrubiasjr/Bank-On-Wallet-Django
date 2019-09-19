@@ -1,0 +1,17 @@
+{% extends 'bank_on_wallet/layout.html' %}
+
+{% block content %}
+
+<fieldset class="main">
+<h4>Welcome To</h4>
+<h1>Bank On</h1>
+<h4>Your AI Financial Broker</h4>
+<h4>Sign Up</h4>
+<form method="POST">
+{% csrf_token %}
+{{ form.as_p }}
+<button type="Sumbit">Sign Up</button>
+</form>
+</fieldset>
+
+{% endblock %}
