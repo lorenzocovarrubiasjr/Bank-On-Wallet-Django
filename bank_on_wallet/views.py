@@ -63,7 +63,10 @@ def home(request):
     if not acct_id:
         return redirect("/bank_on_wallet/")
     acct = Account.objects.get(id=acct_id)
-    context = {"account": acct}
+    acct_positions = Position.objects.filter(account_id = acct_id).order_by("-quantity")
+    acct_trades = Trade.objects.filter(account = acct_id).order_by("-time_of_trade")
+    portfolio_value = acct.portfolio_value() 
+    context = {"account": acct, "positions": acct_positions, "trades": acct_trades, "portfolio_value": portfolio_value}
     return render(request, 'bank_on_wallet/home.html', context)
 
 def deposit(request):
@@ -132,7 +135,7 @@ def bought(request):
     quantity = float(request.POST["qty"])
     resp = requests.get("https://api.iextrading.com/1.0/tops/last", params={"symbols": symbol})
     price = resp.json()[0]["price"]
-    cost = quantity * price 
+    cost = round(quantity * price, 2) 
     if acct.balance < cost:
         return redirect("home")
     else:
@@ -169,13 +172,13 @@ def sold(request):
         quantity = float(request.POST["qty"])
         resp = requests.get("https://api.iextrading.com/1.0/tops/last", params={"symbols": symbol})
         price = resp.json()[0]["price"]
-        cost = quantity * price 
+        cost = round(quantity * price, 2) 
         maybe_p = acct.position_set.filter(symbol=symbol)
         if len(maybe_p) > 0: 
             acct.balance += cost
             acct.balance = round(acct.balance, 2)
             acct.save()
-            trade = Trade(account=acct, symbol=symbol, quantity=quantity,buy_or_sell="BUY", cost=cost)
+            trade = Trade(account=acct, symbol=symbol, quantity=quantity,buy_or_sell="SELL", cost=cost)
             trade.save()
             position = maybe_p[0]
             position.quantity -= quantity
