@@ -1,18 +1,17 @@
 {% extends 'bank_on_wallet/layout.html' %}
 
+{% block intro %}
+    <h3>{{account.name}},</h3>  <h4>time to ball out!</h4>
+{% endblock %}
+
 {% block content %}
-<h1>{{account.name}}, time to ball out!</h1>
+    <div class="container-fluid">
+        <form method="post" action="{% url 'sold' %}">
+            {% csrf_token %}
+            Symbol: <input name="symbol"><br>
+            Quantity: <input name="qty"><br>
+            <input type="submit" value="Sell stock!">
+        </form>
+    </div>
 
-<form method="post" action="{% url 'sold' %}">
-    {% csrf_token %}
-    Symbol: <input name="symbol"><br>
-    Quantity: <input name="qty"><br>
-    <input type="submit" value="Sell stock!">
-</form>
-
-
-
-{% for stock in account.position_set.all%}
-    <ul>{{stock.quantity}} shares of {{stock.symbol}}</ul>
-    {% endfor %}
 {% endblock %}

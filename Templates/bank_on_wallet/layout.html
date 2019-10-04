@@ -53,15 +53,15 @@
       </nav>
 
   <!--TOP ROW DASHBOARD W/BALANCE & PORTFOLIO VALUE -->
-    <div class="page-holder w-100 d-flex flex-wrap">
-        <div class="container-fluid px-xl-5">
+    <div class="page-holder w-100 d-flex flex-wrap pages-header">
+        <div class="container-fluid px-xl-5 pages-header">
           <section class="py-5">          
               <div class="row">
                 <div class="col-xl-2 col-lg-2 mb-2 mb-xl-0"></div>
                 <div class="col-xl-3 col-lg-3 mb-3 mb-xl-0">
                     <div class="bg-white align-items-center ">
                         <div class="flex-grow-2 d-flex align-items-center">
-                          <div class="text">
+                          <div class="text page-welcome">
                               {% block intro %}
                               {% endblock %}</h3>
                           </div>
@@ -69,7 +69,7 @@
                     </div>
                   </div>
                   <div class="col-xl-3 col-lg-6 mb-3 mb-xl-0">
-                    <div class="bg-white shadow roundy p-4 h-100 d-flex align-items-center justify-content-between">
+                    <div class="bg-white shadow-lg roundy p-4 h-100 d-flex align-items-center justify-content-between">
                       <div class="flex-grow-1 d-flex align-items-center">
                         <div class="text">
                           <h6 class="mb-0">Balance</h6><span class="text-gray">${{account.balance}}</span>
@@ -78,7 +78,7 @@
                     </div>
                   </div>
                   <div class="col-xl-3 col-lg-6 mb-3 mb-xl-0">
-                    <div class="bg-white shadow roundy p-4 h-100 d-flex align-items-center justify-content-between">
+                    <div class="bg-white shadow-lg roundy p-4 h-100 d-flex align-items-center justify-content-between">
                       <div class="flex-grow-1 d-flex align-items-center">
                         <div class="text">
                           <h6 class="mb-0">Portfolio Value</h6><span class="text-gray">${{portfolio_value}}</span>
@@ -144,6 +144,31 @@
             color: white;
             text-align: center;
         }
+
+        .pages-header {
+            
+        }
+
+        .pages-header:after {
+            content : "";
+            display: block;
+            position: absolute;
+            top: 0;
+            left: 0;
+            background-image: url("https://i.imgur.com/47QPJPt.png");
+            width: 100%;
+            height: 100%;
+            opacity : 0.8;
+            z-index: -1;
+            background-size: cover;
+            height: 240px;
+            -webkit-mask-image:-webkit-gradient(linear, left top, left bottom, from(rgba(0,0,0,1)), to(rgba(0,0,0,0)));
+            mask-image: linear-gradient(to bottom, rgba(0,0,0,1), rgba(0,0,0,0));
+          }
+
+          .page-welcome {
+            background: rgba(204, 204, 204, 0.1);
+          }
     </style>
 
     <script>$(function(){$(".sidebar-toggler").on("click",function(){$(".sidebar").toggleClass("shrink show")});var e=$("link#theme-stylesheet");$("<link id='new-stylesheet' rel='stylesheet'>").insertAfter(e);var t=$("link#new-stylesheet");$.cookie("theme_csspath")&&t.attr("href",$.cookie("theme_csspath")),$("#colour").change(function(){if(""!==$(this).val()){var e="css/style."+$(this).val()+".css";t.attr("href",e),$.cookie("theme_csspath",e,{expires:365,path:document.URL.substr(0,document.URL.lastIndexOf("/"))})}return!1})}),Cookies.set("active","true");</script>

@@ -1,6 +1,28 @@
+{% load static %}
+<head>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
 
 
-<body background="http://images.all-free-download.com/images/graphiclarge/colorful_shapes_abstract_background_579609.jpg"/>
+<body>
+
+    <div class="container-fluid pages-header shadow-lg vertical-center">
+        <fieldset class="main">
+            <h4>Welcome To</h4>
+            <h1>Bank On</h1>
+            <h4>Your AI Financial Broker</h4>
+            <form method="POST" action='validate'>
+                {% csrf_token %}
+                <input name="username" placeholder="Username"><br>
+                <input type="password" name="password" placeholder="Password"><br>
+                <input type="submit" value="Log In">
+
+                <a href="new_account" ><p class="in_form"> Create New Account </p></a>
+            </form>
+        </fieldset>
+    </div>
+</body>
+
 <style>
 .main {
     background-color: white;
@@ -10,23 +32,43 @@
     width: 35em;
     border-radius: 30px;
     text-align: center;
+
+}
+
+h1 {
+    color: #32CD32;
+    font-family: 'PhaserBankBold';
+    text-shadow: -2px 2px #000000;
+        }
+
+h4 {
+    color: #32CD32;
+    font-family: 'PhaserBankBold';
+    text-shadow: -1px 1px #000000;
+}
+
+@font-face {
+    font-family: 'PhaserBankBold';
+    src: local('PhaserBankBold'),
+    url('../static/bank_on/fonts/PhaserBankBold.ttf') format("truetype");
+}
+
+.pages-header {
+    }
+
+.pages-header:after {
+    content : "";
+    display: flex;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-image: url("https://i.imgur.com/47QPJPt.png");
+    width: 100%;
+    height: 100%;
+    opacity : 1.0;
+    z-index: -1;
+    background-size: cover;
 }
 </style>
-<fieldset class="main">
-<h4>Welcome To</h4>
-<h1>Bank On</h1>
-<h4>Your AI Financial Broker</h4>
-<form method="POST" action='validate'>
-{% csrf_token %}
-<input name="username" placeholder="Username"><br>
-<input type="password" name="password" placeholder="Password"><br>
-<input type="submit" value="Log In">
-
-<a href="new_account" ><p class="in_form"> Create New Account </p></a>
-</form>
-
- 
-</fieldset>
-</body>
 
 

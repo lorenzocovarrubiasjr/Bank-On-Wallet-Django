@@ -1,17 +1,17 @@
 {% extends 'bank_on_wallet/layout.html' %}
 
-{% block content %}
-<h1>{{account.name}}, your dollar invested wisely...</h1>
+{% block intro %}
+<h3>{{account.name}},</h3> <h4> your dollar invested wisely...</h4>
+{% endblock %}
 
-<p>Current Balance: ${{account.balance}}</p>
+{% block content%}
 
-<form method="post" action="{% url 'deposited' %}">
-    {% csrf_token %}
-    Deposit: <input name="money" placeholder="dollars">
-    <input type="submit" value="Deposit Money">
-</form>
+<div class="container-fluid">
+    <form style="align-items: center;" method="post" action="{% url 'deposited' %}">
+        {% csrf_token %}
+        Deposit: <input name="money" placeholder="dollars">
+        <input type="submit" value="Deposit Money">
+    </form>
+</div>
 
-{% for stock in account.position_set.all%}
-    <ul>{{stock.quantity}} shares of {{stock.symbol}}</ul>
-    {% endfor %}
 {% endblock %}

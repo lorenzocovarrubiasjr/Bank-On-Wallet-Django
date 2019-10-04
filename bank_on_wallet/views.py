@@ -30,13 +30,13 @@ def validate(request):
                     request.session["acct_id"] = acct.id 
                     return render(request, 'bank_on_wallet/home.html', context)
                 else:
-                    redirect("index")
+                    return redirect("index")
             else:
-                redirect("index")
+                return redirect("index")
         else:
-            redirect("index")
-    except ValueError:
-        redirect("index")
+            return redirect("index")
+    except:
+        return redirect("index")
         
 def new_account(request):
     return render(request, 'bank_on_wallet/new_account.html')
@@ -75,7 +75,8 @@ def deposit(request):
     if not acct_id:
         return redirect("bank_on_wallet/index.html")
     acct = Account.objects.get(id=acct_id)
-    context = {"account": acct}
+    portfolio_value = acct.portfolio_value() 
+    context = {"account": acct, "portfolio_value": portfolio_value}
     return render(request, "bank_on_wallet/deposit.html", context)
 
 def deposited(request):
@@ -99,7 +100,8 @@ def withdraw(request):
     if not acct_id:
         return redirect("bank_on_wallet/index.html")
     acct = Account.objects.get(id=acct_id)
-    context = {"account": acct}
+    portfolio_value = acct.portfolio_value() 
+    context = {"account": acct, "portfolio_value": portfolio_value}
     return render(request, "bank_on_wallet/withdraw.html", context)
 
 def withdrawn(request):
@@ -123,7 +125,8 @@ def buy(request):
     if not acct_id:
         return redirect("login")
     acct = Account.objects.get(id=acct_id)
-    context = {"account": acct}
+    portfolio_value = acct.portfolio_value() 
+    context = {"account": acct, "portfolio_value": portfolio_value}
     return render(request, "bank_on_wallet/buy.html", context)
 
 def bought(request):
@@ -159,7 +162,8 @@ def sell(request):
     if not acct_id:
         return redirect("login")
     acct = Account.objects.get(id=acct_id)
-    context = {"account": acct}
+    portfolio_value = acct.portfolio_value() 
+    context = {"account": acct, "portfolio_value": portfolio_value}
     return render(request, "bank_on_wallet/sell.html", context)
 
 def sold(request):

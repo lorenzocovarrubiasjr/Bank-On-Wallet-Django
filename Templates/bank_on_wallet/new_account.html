@@ -1,24 +1,84 @@
-<body background="http://images.all-free-download.com/images/graphiclarge/colorful_shapes_abstract_background_579609.jpg"/>
-<style>
-.main {
-    background-color: white;
-    margin-left: auto;
-    margin-right: auto;
-    width: 35em;
-    border-radius: 30px;
-    text-align: center;
-}
-</style>
-<fieldset class="main">
-<h1>Bank On</h1>
-<h3>Create a New Account!</h3>
+{% load static %}
+<head>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
 
-<form method="post" action="/bank_on_wallet/create_account/">
-    {% csrf_token %}
-    <input name="name" placeholder="Your name"><br>
-    <input name="username" placeholder="Username"><br>
-    <input type="password" name="password" placeholder="Password"><br>
-    <input type="submit" value="Create Account">
-</form>
-</fieldset>
+<body>
+
+    <div class="container-fluid pages-header shadow-lg vertical-center">
+        <fieldset class="main">
+            <div class="row m-5">
+                <div class="col align-middle">
+                        <h3 class="align-middle"> Welcome to </h>
+                        <h1 class="align-middle"> Bank On</h1>
+                        <h3 class="align-middle">Create a New Account</h3>
+                </div>
+                <div class=" col form-group align-middle">
+                        <form method="post" action="/bank_on_wallet/create_account/">
+                        {% csrf_token %}
+                            <input name="name" placeholder="Your name"><br>
+                            <input name="username" placeholder="Username"><br>
+                            <input type="password" name="password" placeholder="Password"><br>
+                            <input type="submit" value="Create Account">
+                        </form>
+                        <h4><a href="/bank_on_wallet/"/>Login</h4>
+                </div>
+            </div>
+        </fieldset>
+    </div>
 </body>
+
+<style>
+    .main {
+        background-color: white;
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: 10%;
+        width: 35em;
+        border-radius: 30px;
+        text-align: center;
+
+    }
+    h1 {
+        color: #32CD32;
+        font-family: 'PhaserBankBold';
+        text-shadow: -3px 3px #000000;
+            }
+
+    h3 {
+        color: #32CD32;
+        font-family: 'PhaserBankBold';
+        text-shadow: -3px 3px #000000;
+    }
+
+    @font-face {
+        font-family: 'PhaserBankBold';
+        src: local('PhaserBankBold'),
+        url('../static/bank_on/fonts/PhaserBankBold.ttf') format("truetype");
+    }
+
+    .vertical-center {
+        min-height: 100%;
+        min-height: 100vh; 
+        display: flex;
+        align-items: center;
+    }
+
+    .pages-header {
+    }
+
+    .pages-header:after {
+        content : "";
+        display: flex;
+        position: absolute;
+        top: 0;
+        left: 0;
+        background-image: url("https://i.imgur.com/47QPJPt.png");
+        width: 100%;
+        height: 100%;
+        opacity : 1.0;
+        z-index: -1;
+        background-size: cover;
+    }
+
+    </style>

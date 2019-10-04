@@ -1,3 +1,8 @@
 .nav-custom {
     background-image: linear-gradient(to right,rgb(63, 49, 138), rgba(212,217,245));
 }
+
+.pages-header {
+    background-color: lightblue;
+    background-image: url("https://i.imgur.com/47QPJPt.png");
+}
